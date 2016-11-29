@@ -5,7 +5,7 @@ const CurrentState = (props) => {
   const { winner, nextPlayer, gameOver, board } = props.data;
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.info}>winner: {winner || 'null'}</Text>
       <Text style={styles.info}>nextPlayer: {nextPlayer};</Text>
       <Text style={styles.info}>gameOver: {gameOver ? 'true' : 'false'}</Text>
@@ -22,6 +22,11 @@ CurrentState.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginVertical: 5,
+    marginHorizontal: 10
+  },
+
   info: {
     color: '#FFF',
     fontSize: 12,
