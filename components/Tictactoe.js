@@ -7,7 +7,7 @@ import Board from './Board';
 import GameStatus from './GameStatus';
 import OptionItem from './OptionItem';
 import CurrentState from './CurrentState';
-import { movement, restart } from '../state/actions';
+
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -19,8 +19,8 @@ class TicTacToe extends React.Component {
       showDetail: false
     };
 
-    this.clickMovement = this.clickMovement.bind(this);
-    this.clickRestart = this.clickRestart.bind(this);
+    this.handleMovement = this.handleMovement.bind(this);
+    this.handleRestart = this.handleRestart.bind(this);
     this.showCurrentState = this.showCurrentState.bind(this);
   }
 
@@ -35,12 +35,12 @@ class TicTacToe extends React.Component {
             colorMapping[currentPlayer] : colorMapping[this.props.game.nextPlayer];
   }
 
-  clickMovement(row, col) {
-    this.props.movement(row, col);
+  handleMovement(row, col) {
+    // TODO: Fix it.
   }
 
-  clickRestart() {
-    this.props.restart();
+  handleRestart() {
+    // TODO: Fix it.
   }
 
   showCurrentState() {
@@ -65,7 +65,7 @@ class TicTacToe extends React.Component {
             <Board
               board={this.props.game.board}
               gameOver={this.props.game.gameOver}
-              onClick={nextPlayer === 'Rival' ? () => {} : this.clickMovement}
+              onClick={nextPlayer === 'Rival' ? () => {} : this.handleMovement}
             />
           </Components.LinearGradient>
         </View>
@@ -84,7 +84,7 @@ class TicTacToe extends React.Component {
           text={'Restart!'}
           icon={'refresh'}
           iconColor={Colors.warning}
-          onPress={this.clickRestart}
+          onPress={this.handleRestart}
         />
 
         {stateDetail}
@@ -101,9 +101,7 @@ class TicTacToe extends React.Component {
 
 TicTacToe.propTypes = {
   boardId: PropTypes.number,
-  game: PropTypes.object,
-  movement: PropTypes.func,
-  restart: PropTypes.func
+  game: PropTypes.object
 };
 
 const styles = StyleSheet.create({
@@ -139,5 +137,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { movement, restart }
+  null
 )(TicTacToe);
